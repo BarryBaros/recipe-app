@@ -28,17 +28,40 @@ export default function FoodDetails({ foodId }) {
             🧑‍🤝‍🧑<strong>Serves {food.servings}</strong>
           </span>
           <span>
-            {" "}
             <strong>
               {" "}
               {food.vegetarian ? "🥕Vegetarian" : "🍖Non-Vegetarian"}
             </strong>
           </span>
-          <span><strong>{food.vegan}? "🐄Vegan":""</strong></span>
+          <span>
+            <strong>{food.vegan ? "🐄Vegan" : ""}</strong>
+          </span>
         </div>
         <div>
-          $<span><strong>{food.pricePerServing / 100} Per serving</strong></span>
+          $
+          <span>
+            <strong> {food.pricePerServing / 100} Per serving</strong>
+          </span>
         </div>
+
+        <h2>Ingredients</h2>
+        {food.extendedIngredients &&
+          food.extendedIngredients.map((item) => (
+            <div>
+              <img
+                src={
+                  `https://spoonacular.com/cdn/ingredients_100x100/` +
+                  item.image
+                }
+                alt=""
+              />
+              <h3>{item.name}</h3>
+              <h3>
+                {" "}
+                {item.amount} {item.unit}{" "}
+              </h3>
+            </div>
+          ))}
 
         <h2>Instructions</h2>
         <div className={styles.recipeInstruction}>
